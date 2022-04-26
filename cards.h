@@ -21,8 +21,8 @@ struct card
 };
 
 typedef struct node Node;
- struct node
-{
+
+ struct node{
     Card card;
     Node* next;
     Node* prev;
@@ -63,11 +63,21 @@ void insert(Node* theHead, Node* newElement){
 }
 
 /// we need to implement a method that get the tail
-struct node* theTail(Node* theHead, Node* tail){
+struct node* theTail(Node* theHead){
+    Node* tail;
     while (theHead != NULL){
        tail = theHead;
        theHead = theHead->next;
     }return tail;
+}
+
+/// get from the tail
+struct node * fromTail(Node * theHead, int ft) {
+    Node * tmpr = theTail(theHead);
+    for (int i = 0; i < ft; ++i) {
+        tmpr = tmpr->prev;
+    }
+    return tmpr;
 }
 
 
@@ -81,14 +91,6 @@ int theCountElements(Node* theHead){
     return count;
 }
 
-/// get from the tail
-struct node * fromTail(Node * theHead, int ft) {
-    Node * tmp = theTail(theHead);
-    for (int i = 0; i < ft; ++i) {
-        tmp = tmp->prev;
-    }
-    return tmp;
-}
 /// get from the head
 struct node * fromHead(Node * theHead, int fh) {
     Node * tmp = theHead;
@@ -96,5 +98,48 @@ struct node * fromHead(Node * theHead, int fh) {
         tmp = tmp->next;
     }
     return tmp;
+}
+
+/// Method to create a node from card suit and rank
+struct node* nodeFromCard(Node* theHead, char suit, char rank){
+    while(theHead != NULL) {
+        if(theHead->card.suit==suit & theHead->card.rank==rank ){
+            return theHead;
+        }
+        theHead =theHead->next;
+    }
+    printf("The node not found in the list \n");
+    return 0;
+}
+
+/// Method to delete a node
+struct node* deleteNodes( Node* theHead, Node* deleteNode){
+struct node* mainHead = theHead;
+    while(theHead != NULL) {
+        // if yhe node we want to delete not head or tail
+        if(deleteNode->next != NULL & deleteNode->prev != NULL){
+         deleteNode->next->prev = deleteNode->prev;
+         deleteNode->prev->next = deleteNode->next;
+         free(deleteNode);
+            return mainHead;
+        }
+        // if the node equal to head
+        if(deleteNode->prev == NULL){
+            //make the next node (prev==0)
+            deleteNode->next->prev = NULL;
+            theHead = deleteNode->next;
+            free(deleteNode);
+            return mainHead;
+        }
+        // if the node equal to tail
+        if(deleteNode->next == NULL){
+            //make the prev node (next==0)
+            deleteNode->prev->next = NULL;
+            theHead = deleteNode->prev;
+            free(deleteNode);
+            return mainHead;
+        }
+        theHead =theHead->next;
+    }
 }
 
