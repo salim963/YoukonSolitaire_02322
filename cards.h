@@ -1,11 +1,8 @@
-//
-// Created by salim on 26-04-2022.
-//
+
 #include<stdio.h>
 #include<stdlib.h>
 #ifndef YOUKONSOLITAIRE_02322_CARDS_H
 #define YOUKONSOLITAIRE_02322_CARDS_H
-
 #endif //YOUKONSOLITAIRE_02322_CARDS_H
 
 
