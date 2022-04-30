@@ -18,34 +18,39 @@ int main() {
 
 
 void go() {
-    char playCommand[2];
+    char playCommand[90];
     int newGame = 0;
     while (true){
             printf("INPUT >");
-            scanf("%s",playCommand);
+            scanf("%s",&playCommand);
+
 
         Node * cardsDeckHead;
 /// if we start a new game than we should create a new deck
         if (newGame == 0) {
             cardsDeckHead = CreateDeck();
-        }else{
-            cardsDeckHead =MixDeck(CreateDeck());
         }
 
-        if(strcmp(playCommand,"SW") != 0){
+        if(strcmp(&playCommand,"SW") == 0){
             printDeck(cardsDeckHead);
             printf("\n");
             printf("LAST command:SW \n");
 
-        }else if(strcmp(playCommand,"SR") != 0){
+        }
+
+        if(strcmp(&playCommand,"SR") == 0){
             newGame = 1;
+            cardsDeckHead =MixDeck(CreateDeck());
+            printDeck(cardsDeckHead);
             printf("LAST command:SR \n");
 
-        }else if (strcmp(playCommand, "QQ") != 0){
+        }else if (strcmp(&playCommand, "QQ") == 0){
             printf("LAST command:QQ \n");
             break;
 
         }
+
+
 
 /*
         if(!strcmp(playCommand,"SW")){
