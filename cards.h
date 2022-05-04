@@ -140,3 +140,24 @@ struct node* mainHead = theHead;
     }
 }
 
+/*_______________________________________________________*/
+/*_______________________________________________________*/
+/*_______________________________________________________*/
+/*_______________________________________________________*/
+
+void hideCards(Node ** theHead, int cardsToHide){
+    for(int i = 0; i < cardsToHide; i++){
+        putCard(&fromHead(*theHead, i)->card, fromHead(*theHead, i)->card.suit, fromHead(*theHead, i)->card.rank, 0);
+    }
+}
+
+void hideAllCards(Node ** c2, Node ** c3, Node ** c4, Node ** c5, Node ** c6, Node ** c7){
+
+    hideCards(c7,6);
+    hideCards(c6,5);
+    hideCards(c5,4);
+    hideCards(c4,3);
+    hideCards(c3,2);
+    hideCards(c2,1);
+
+}
