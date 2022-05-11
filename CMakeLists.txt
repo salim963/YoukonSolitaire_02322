@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
-project(YoukonSolitaire_02322 C)
+project(Gr_16_Project_2 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(YoukonSolitaire_02322 main.c game.c cards.h)
+add_executable(Gr_16_Project_2 main.c)
